@@ -1,5 +1,6 @@
 <%@ page import="org.eclipse.birt.report.utility.ParameterAccessor,
 				 org.eclipse.birt.report.IBirtConstants,
+				 org.apache.commons.lang.StringEscapeUtils,	
 				 org.eclipse.birt.report.session.*" %>
 
 <%-- Map Java attributes to Javascript constants --%>
@@ -13,7 +14,7 @@
 	{
 		Constants.request = {};
 	}
-	Constants.request.format = '<%= ParameterAccessor.getFormat(request) %>';
+	Constants.request.format = '<%= StringEscapeUtils.escapeJavaScript(ParameterAccessor.getFormat(request)) %>';
 	Constants.request.rtl = <%= ParameterAccessor.isRtl( request ) %>;
 	Constants.request.isDesigner = <%= ParameterAccessor.isDesigner() %>;
 	Constants.request.servletPath = "<%= request.getAttribute( "ServletPath" ) %>".substr(1);
